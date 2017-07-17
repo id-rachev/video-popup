@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import ModalContent from './modal-content';
 
 const modalPathName = '/popup';
 
@@ -28,11 +24,11 @@ class ModalSwitch extends Component {
             <div>
                 <Switch location={isModal ? this.previousLocation : location}>
                     <Route exact path={match.path} component={ModalHome}/>
-                    <Route path={modalPathName} component={ModalInner}/>
+                    <Route path={modalPathName} component={ModalContent}/>
                 </Switch>
                 {isModal ? <Route path={modalPathName} component={ModalWindow} /> : null}
             </div>
-        )
+        );
     }
 }
 
@@ -45,41 +41,27 @@ const ModalHome = () => {
                 Open Popup
             </Link>
         </div>
-    )
-}
-
-const ModalInner = (props) => {
-    return (
-        <div>
-            {props.location ?
-                <p>
-                    {`(This view is accessed through direct url link: "${props.location.pathname}")`}
-                </p>
-                : null}
-            <h1>Enter video url from youtube:</h1>
-            <input type="text"/>
-        </div>
-    )
+    );
 }
 
 const ModalWindow = ({ history }) => {
-    const back = (e) => {
-        e.stopPropagation();
+    const back = (ev) => {
+        ev.stopPropagation();
         history.goBack();
     }
-    const stay = (e) => {
-        e.stopPropagation();
+    const stay = (ev) => {
+        ev.stopPropagation();
     }
     return (
         <div onClick={back} className='modal-background'>
             <div className='modal' onClick={stay} >
-                <ModalInner />
+                <ModalContent />
                 <button type='button' onClick={back}>
                     Close
                 </button>
             </div>
         </div>
-    )
+    );
 }
 
 const ModalRouter = () => {
@@ -87,7 +69,7 @@ const ModalRouter = () => {
         <Router>
             <Route component={ModalSwitch} />
         </Router>
-    )
+    );
 }
 
 export default ModalRouter;
