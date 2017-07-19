@@ -26,17 +26,17 @@ export default class ModalContent extends Component {
 		const matched = this.props.match;
 		const videoId = this.state.videoId;
 	    return (
-	        <div>
+	        <div className={matched ? 'pseudo-modal' : ''}>
 	            {matched ?
 	                <p>
-	                    {`(This view is accessed through direct url link: "${matched.path}")`}
+	                    {`( This 'pseudo-popup' view is accessed through direct url link: "${matched.path}" )`}
 	                </p>
 	                : null
 	            }
 	            {videoId ? null
 	            	: <input
 		            	type="text"
-		            	placeholder='Enter video url from youtube'
+		            	placeholder='enter video URL from youtube...'
 		            	onChange={this.onInputChange}
 		            	value={this.state.videoUrl} />
 	            }

@@ -21,12 +21,25 @@ class VideoContent extends Component {
 		const videoSrc = `https://www.youtube.com/embed/${videoId}`;
 		return (
 			<div>
-            	<iframe
-            		width='560'
-            		height='315'
-            		src={videoSrc}
-            		frameBorder='0' >
-        		</iframe>
+				<div className='video-wrapper'>
+	            	<iframe
+	            		className='video-player'
+	            		width='100%'
+	            		height='454'
+	            		src={videoSrc}
+	            		frameBorder='0' >
+	        		</iframe>
+        		</div>
+        		<div className='row'>
+        			<ul>
+        				<button className='like-btn icon button'>like</button>
+        				<button className='share-btn icon button'>share</button>
+        			</ul>
+        			<ul>
+        				<button className='edit-btn button'>edit</button>
+        				<button className='delete-btn button'>delete</button>
+        			</ul>
+        		</div>
         		<form onSubmit={this.submitComment.bind(this)}>
 	        		<input
 		            	type='text'

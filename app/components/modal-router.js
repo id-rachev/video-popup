@@ -35,7 +35,9 @@ class ModalSwitch extends Component {
 const ModalHome = () => {
     return (
         <div>
-            <Link to={{
+            <Link 
+                className='button'
+                to={{
                     pathname: modalPathName,
                     state: { modal: true } }}>
                 Open Popup
@@ -55,10 +57,8 @@ const ModalWindow = ({ history }) => {
     return (
         <div onClick={back} className='modal-background'>
             <div className='modal' onClick={stay} >
+                <button type='button' className='close-btn' onClick={back} />
                 <ModalContent />
-                <button type='button' onClick={back}>
-                    Close
-                </button>
             </div>
         </div>
     );

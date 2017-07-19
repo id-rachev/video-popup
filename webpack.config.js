@@ -11,7 +11,25 @@ module.exports = {
 	module: {
 		rules: [
 			{ test: /\.(js)$/, use: 'babel-loader' },
-			{ test: /\.css$/, use: [ 'style-loader', 'css-loader' ]}
+			{
+				test: /\.css$/,
+				exclude: /node_modules/,
+				use: [
+					{ loader: 'style-loader', },
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 1,
+						}
+					},
+					{ loader: 'postcss-loader' }
+				]
+			},
+			{
+				test: /\.(jpg|png|)$/,
+				loader: 'file-loader',
+				include: path.resolve(__dirname, 'app/images')
+			}
 		]
 	},
 	devServer: {

@@ -23,10 +23,12 @@ class RepliesList extends Component {
 		return _.map(replies, reply => {
 			return (
 				<li key={reply.timestamp}>
-					<div className='reply-header'>
-						<img src='' alt='avatar' />
-						<h4>{reply.author}</h4>
-						<p>{this.milisecToDateTime(reply.timestamp)}</p>
+					<div className='reply-header row'>
+						<img className='avatar' src={require('../images/avatar.png')} alt='avatar' />
+						<div className='column'>
+							<h4>{reply.author}</h4>
+							<p>{this.milisecToDateTime(reply.timestamp)}</p>
+						</div>
 					</div>
 					<p>{reply.content}</p>
 				</li>
@@ -41,10 +43,10 @@ class RepliesList extends Component {
 					{this.renderReplies(this.props.comment.replies)}
 				</ul>
 				<div className='comment-reply'>
-					<ul>
-						<li>comment</li>
-						<li>photo</li>
-						<li>feedback</li>
+					<ul className='row'>
+						<li><button className='reply-comment button active'>comment</button></li>
+						<li><button className='reply-photo button'>photo</button></li>
+						<li><button className='reply-feedback button'>feedback</button></li>
 					</ul>
 					<form onSubmit={this.submitReply.bind(this)}>
 		        		<input
