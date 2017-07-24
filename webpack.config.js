@@ -26,7 +26,7 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(jpg|png|)$/,
+				test: /\.(jpg|png|svg)$/,
 				loader: 'file-loader',
 				include: path.resolve(__dirname, 'app/images')
 			}

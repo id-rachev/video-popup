@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getVideoId from 'get-video-id';
-import VideoContent from './video-content';
+import VideoContent from '../containers/video-content';
 
 export default class ModalContent extends Component {
 	constructor(props) {
@@ -24,7 +24,7 @@ export default class ModalContent extends Component {
 
 	render() {
 		const matched = this.props.match;
-		const videoId = this.state.videoId;
+		const {videoUrl, videoId} = this.state;
 	    return (
 	        <div className={matched ? 'pseudo-modal' : ''}>
 	            {matched ?
@@ -40,7 +40,7 @@ export default class ModalContent extends Component {
 		            	onChange={this.onInputChange}
 		            	value={this.state.videoUrl} />
 	            }
-	            {videoId ? <VideoContent videoId={videoId} /> : null}
+	            {videoId ? <VideoContent videoId={videoId} videoUrl={videoUrl} /> : null}
 	        </div>
 	    );
 	}

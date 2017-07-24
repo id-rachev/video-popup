@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchComments, createComment } from '../actions';
-import CommentsList from './comments-list';
+import VideoPlayer from '../components/video-player';
+import CommentsList from '../components/comments-list';
 
 class VideoContent extends Component {
 
@@ -17,19 +18,9 @@ class VideoContent extends Component {
 	}
 
 	render() {
-		const videoId = this.props.videoId;
-		const videoSrc = `https://www.youtube.com/embed/${videoId}`;
 		return (
 			<div>
-				<div className='video-wrapper'>
-	            	<iframe
-	            		className='video-player'
-	            		width='100%'
-	            		height='454'
-	            		src={videoSrc}
-	            		frameBorder='0' >
-	        		</iframe>
-        		</div>
+				<VideoPlayer videoUrl={this.props.videoUrl}/>
         		<div className='row'>
         			<ul>
         				<button className='like-btn icon button'>like</button>
@@ -47,7 +38,7 @@ class VideoContent extends Component {
 		            	placeholder='comment...' />
             	</form>
             	<CommentsList 
-            		videoId={videoId}
+            		videoId={this.props.videoId}
             		comments={this.props.comments} />
 			</div>
 		);
